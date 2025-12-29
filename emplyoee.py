@@ -3,7 +3,7 @@
 #============================================================
 
 class Employee:
-    def __init__(self,emp_id, name:str, role:str, salary:float ):
+    def __init__(self,emp_id:str, name:str, role:str, salary:float ):
         self.__emp_id = emp_id #private members(encalpsulation)
         self.__name = name
         self.__role = role
@@ -50,14 +50,14 @@ class Employee:
         if len(assets) > 0:
             return f"ID: {self.__emp_id} | Name: {self.__name} | Role: {self.__role} | Salary: {self.__salary} | Assigned Assets: {assets}"
         return f"ID: {self.__emp_id} | Name: {self.__name} | Role: {self.__role} | Salary: {self.__salary} | Assigned Assets: NO Assets Given"
-
     def __str__(self):
+        return self.get_details()
+    def __repr__(self):
         return self.get_details()
 
 
-
 class Manager(Employee):
-    def __init__(self, emp_id:int, name:str, role:str, salary:float , bonus:float = 1000):
+    def __init__(self, emp_id:str, name:str, role:str, salary:float , bonus:float = 1000):
         super().__init__(emp_id , name, role, salary)
         self.__bonus = bonus
 
