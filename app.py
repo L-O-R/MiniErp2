@@ -32,6 +32,20 @@ What happens here:
 This is SECURITY - prevents unauthorized access to the system.
 """
 
+"""
+PHASE 3 Main Menu:
+-------------------
+After successful login, user sees the MAIN MENU.
+
+What happens here:
+1. Display 4 main options
+2. User selects an option (1-4)
+3. System executes the chosen action
+4. After action completes → Return to Main Menu (LOOP)
+5. Only "Save & Exit" breaks the loop
+
+This is the CENTRAL HUB - all navigation starts here.
+"""
 
 from reading_writing import read_data_from_employee, read_data_from_assets, read_data_from_login_cred
 
@@ -94,6 +108,5 @@ if __name__ == "__main__":
         print("Security Lockdown")
         print("Max Attempt reached , Application Shutting down...")
         print("=" * 50)
-    print(login)
 
 

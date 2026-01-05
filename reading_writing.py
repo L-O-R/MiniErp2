@@ -2,7 +2,6 @@
 #Step 1.3 => Read and write from the files
 #============================================================
 import os
-
 from assets import Hardware, Software
 from emplyoee import Employee, Manager
 

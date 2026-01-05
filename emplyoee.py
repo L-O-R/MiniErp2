@@ -79,6 +79,10 @@ class Manager(Employee):
 
 
 
-
+# emp_dict = {
+#     "Em001": {
+#         name, role, salary, bonus
+#     }
+# }
 
 
