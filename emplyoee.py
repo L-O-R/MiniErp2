@@ -43,12 +43,13 @@ class Employee:
         return self.__assigned_assets
 
     def assign_assets(self, assets):
-        self.__assigned_assets = assets
+        self.__assigned_assets.append(assets)
 
     def get_details(self):
-        assets = ",".join(self.__assigned_assets)
-        if len(assets) > 0:
-            return f"ID: {self.__emp_id} | Name: {self.__name} | Role: {self.__role} | Salary: {self.__salary} | Assigned Assets: {assets}"
+
+        if len(self.__assigned_assets) > 0:
+            # assets_assigned = "|".join(assets)
+            return f"ID: {self.__emp_id} | Name: {self.__name} | Role: {self.__role} | Salary: {self.__salary} | Assigned Assets: {self.__assigned_assets}"
         return f"ID: {self.__emp_id} | Name: {self.__name} | Role: {self.__role} | Salary: {self.__salary} | Assigned Assets: NO Assets Given"
     def __str__(self):
         return self.get_details()

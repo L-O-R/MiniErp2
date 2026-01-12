@@ -35,6 +35,8 @@ class Assets:
 
     def __str__(self):
         return self.get_details()
+    def __repr__(self):
+        return self.get_details()
 
     def __add__(self, other):
         return self.__asset_value + other.__value

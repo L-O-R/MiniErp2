@@ -17,6 +17,8 @@ What happens here:
 Think of this like a computer booting up - it needs to load everything
 into memory (RAM) before you can use it.
 """
+from main_menu import main_menu_loop
+
 """
 PHASE 2 EXPLANATION:
 -------------------
@@ -108,5 +110,17 @@ if __name__ == "__main__":
         print("Security Lockdown")
         print("Max Attempt reached , Application Shutting down...")
         print("=" * 50)
+    else:
+        print()
+        print("=" * 50)
+        print("All System Operational")
+        print("=" * 50)
+        print()
+        print("Employee Management Active")
+        print("Assets Management Active")
+        # print("Company financial Active")
+        # print("Data save and Exit")
+        print()
 
+        exit_requested = main_menu_loop(login, employee_dict, assets_dict)
 
