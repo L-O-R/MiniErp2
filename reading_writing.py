@@ -22,7 +22,7 @@ def read_data_from_employee():
                 emp_name = parts[1]
                 emp_role = parts[2]
                 emp_salary = float(parts[3])
-                if emp_role == "Manager":
+                if emp_role == "manager":
                     emp_bonus = float(parts[4])
                     employee_dict[emp_id] = Manager(emp_id, emp_name, emp_role, emp_salary, emp_bonus)
                 else:

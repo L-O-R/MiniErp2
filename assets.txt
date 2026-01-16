@@ -1,0 +1,1 @@
+AS001|Laptop|hardware|20000.0|Good

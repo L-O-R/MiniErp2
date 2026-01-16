@@ -72,7 +72,7 @@ class Manager(Employee):
 
     @property
     def total_payment(self):
-        return self.__bonus + self.__salary
+        return self.__bonus + self.emp_salary
 
     def get_details(self):
         base_details = super().get_details()

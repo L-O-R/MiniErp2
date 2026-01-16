@@ -1,8 +1,13 @@
 # ============================================
 # PHASE 3: MAIN MENU
 # ============================================
-from assets_management import add_asset, view_all_assets, assign_asset_to_emp, calculate_assets_depreciation
+from assets import Hardware
+from assets_management import add_asset, view_all_assets, assign_asset_to_emp, calculate_assets_depreciation, \
+    delete_assets
+from company_financial import calculate_total_salary_expenditure, calculate_total_assets_value, \
+    generate_company_overview
 from emploee_management import add_employee, update_employee, delete_employee, view_all_employees
+from emplyoee import Employee, Manager
 from input_validations import get_user_choice
 
 
@@ -73,10 +78,11 @@ def manage_assets_menu(assets_dict:dict, employees_dict:dict):
         print("2. View all Assets")
         print("3. Assign Assets")
         print("4. Calculate Depreciation")
-        print("5. Back to Main Menu")
+        print("5. Delete Assets ")
+        print("6. Back to Main Menu")
         print("=" * 50)
         print()
-        choice = get_user_choice(["1","2","3","4", "5"], "(1-5)")
+        choice = get_user_choice(["1","2","3","4", "5", "6"], "(1-5)")
 
         match choice:
             case 1:
@@ -88,8 +94,56 @@ def manage_assets_menu(assets_dict:dict, employees_dict:dict):
             case 4:
                 calculate_assets_depreciation(assets_dict)
             case 5:
+                delete_assets(assets_dict)
+            case 6:
                 input("Press Enter to Go back to Main Menu...")
                 break
+
+
+def company_financial_menu(assets_dict:dict, employees_dict:dict):
+    while True:
+        print()
+        print("=" * 50)
+        print("        Company Financials")
+        print("=" * 50)
+        print()
+        print("1. Total Salary Expenditures")
+        print("2. Total Assets Value")
+        print("3. Company Overview")
+        print("4. Back to Main Menu")
+        print("=" * 50)
+        print()
+
+        choice = get_user_choice(["1", "2", "3", "4"], "(1-4)")
+        match choice:
+            case 1:
+                calculate_total_salary_expenditure(employees_dict)
+            case 2:
+                calculate_total_assets_value(assets_dict)
+            case 3:
+                generate_company_overview(assets_dict, employees_dict)
+            case 4:
+                break
+
+def save_employee_data(employee_dict, filename = "employee.txt"):
+    with open(filename, 'w') as f:
+        for employee in employee_dict.values():
+            if isinstance(employee, Manager):
+                line = f'{employee.emp_id}|{employee.emp_name}|{employee.emp_role}|{employee.emp_salary}|{employee.bonus}\n'
+            else:
+                line = f'{employee.emp_id}|{employee.emp_name}|{employee.emp_role}|{employee.emp_salary}\n'
+
+            f.write(line)
+
+def save_assets_data(assets_dict, filename = "assets.txt"):
+    with open(filename, 'w') as f:
+        for asset in assets_dict.values():
+            if isinstance(asset, Hardware):
+                line = f"{asset.get_id}|{asset.get_name}|{asset.get_type}|{asset.get_value}|{asset.physical_condition}\n"
+            else:
+                line = f"{asset.get_id}|{asset.get_name}|{asset.get_type}|{asset.get_value}|{asset.date}\n"
+            f.write(line)
+
 
 
 def main_menu_loop(user:tuple, employees_dict:dict, assets_dict:dict):
@@ -105,13 +159,15 @@ def main_menu_loop(user:tuple, employees_dict:dict, assets_dict:dict):
                 print("Loading Assets Menu...")
                 manage_assets_menu(assets_dict, employees_dict)
             case 3:
-                print("Loading Company Financial Data...")
+                company_financial_menu(assets_dict, employees_dict)
             case 4:
                 print("Saving the data")
                 c = input("Do you really want to exit? (y/n): ")
                 if c.lower() == "y":
                     print()
                     print("Thank you for using the application!")
+                    save_assets_data(assets_dict)
+                    save_employee_data(employees_dict)
                     print("=" * 50)
                     break
                 else:

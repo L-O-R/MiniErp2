@@ -1,6 +1,7 @@
 
 from assets import Hardware, Software
 from emploee_management import validate_name, validate_number
+from input_validations import get_user_choice
 
 
 def generate_assets_id(asset_dict):
@@ -141,9 +142,32 @@ def calculate_assets_depreciation(asset_dict):
     print()
 
 
+def delete_assets(assets_dict):
+    print()
+    print("=" * 50)
+    print("       Delete Assets")
+    print("=" * 50)
+    print()
 
+    if not assets_dict:
+        print("No Assets found in the system.")
+        return
 
+    asset_id = input("Enter Asset ID : ")
+    if asset_id not in assets_dict:
+        print("Invalid Asset ID")
+        return
 
-
-
+    asset = assets_dict[asset_id]
+    print("Asset Details to be Deleted: ")
+    print(asset)
+    print()
+    choice = input("Do you really Want to delete the Asset(y/n)? ")
+    if choice.lower() == "y" or choice.lower() == "yes":
+        del assets_dict[asset_id]
+        print()
+        print("assets deleted successfully ")
+    else:
+        print("Deleting Assets Cancelled")
+        print()
 
